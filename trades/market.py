@@ -18,7 +18,6 @@ def sim(config):
     }
 
     market_class = market_types.get(config.market_type)
-
     market = market_class(teams, config)
 
     while year < end_year:

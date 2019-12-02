@@ -4,6 +4,9 @@ class Mechanism:
     to assign players to each team
     """
 
+    def __init__(self, teams, config):
+        self.teams = teams
+
     def run_year(self, year):
         """
         Execute a year of trades on the given year

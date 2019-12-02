@@ -7,7 +7,7 @@ class Standard(Mechanism):
     Implements the standard team-to-team trade mechanism
     """
     def __init__(self, teams, config):
-        self.teams = teams
+        super(Standard, self).__init__(teams, config)
 
     def run_year(self, year): # TODO: this shouldn't take an argument, how to maintain current filename?
         """

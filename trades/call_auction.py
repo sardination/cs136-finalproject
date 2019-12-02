@@ -28,10 +28,8 @@ class CallAuction(Mechanism):
             self.value = value
 
 
-    # def __init__(self, budget, teams):
     def __init__(self, teams, config)
-        self.teams = teams
-        # self.year_budget = budget
+        super(CallAuction, self).__init__(teams, config)
         self.year_budget = config.budget
         self.team_budgets = {team.id: self.year_budget for team in self.teams}
 
