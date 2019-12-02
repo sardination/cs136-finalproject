@@ -21,9 +21,15 @@ class Team:
             player.team = None
 
     def set_preference_ordering(self, preference_ordering):
+        """
+        A preference ordering is a list of sets of players
+        """
         self.preference_ordering = preference_ordering
 
     def set_valuations(self, valuations):
+        """
+        A valuation can be for players across multiple teams
+        """
         self.valuations = valuations
 
     # def propose_direct_trade(self, teams):
@@ -44,3 +50,15 @@ class Team:
             budget (int): budget that the team has remaining to bid for players
             teams (list of Teams): teams in the league
         """
+        pass
+
+    def make_asks(self, budget, teams, bids):
+        """
+        Make asks on players and sets of players
+
+        Args:
+            budget (int): budget that the team has remaining to bid for players
+            teams (list of Teams): teams in the league
+            bids (list of lists of Bids): bids made by all teams in the current auction cycle
+        """
+        pass

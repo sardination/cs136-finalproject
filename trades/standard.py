@@ -9,6 +9,8 @@ class Standard(Mechanism):
     def __init__(self, teams, config):
         super(Standard, self).__init__(teams, config)
 
+        self.trade_history_folder = config.trade_history_folder
+
     def run_year(self, year): # TODO: this shouldn't take an argument, how to maintain current filename?
         """
         Use a preexisting record of per-year historic trades

@@ -94,6 +94,21 @@ class CallAuction(Mechanism):
         self.asks = []
 
 
+    def add_to_auction(self, player_set, bids, asks):
+        """
+        Adds to an existing auction for the player set if one exists,
+        otherwise creates a new auction
+        """
+        try:
+            index = self.auction_sets.index(set(bid.players))
+            self.bids[index].extend(bids)
+            self.asks[index].extend(asks)
+        except ValueError:
+            self.auction_sets.append(set(bid.players))
+            self.bids.append(bids)
+            self.asks.append(asks)
+
+
     def run_year(self, year):
         self.reset_auctions()
 
@@ -101,10 +116,14 @@ class CallAuction(Mechanism):
 
         while clearing:
             for team in self.teams:
-                team.make_bids(team_budgets[team.id], self.teams)
+                made_bids = team.make_bids(team_budgets[team.id], self.teams)
+                for bid in made_bids:
+                    self.add_to_auction(set(bid.players), [bid], [])
 
-            # teams will make asks based on bids
+            # teams will make asks based on bids (?)
             for team in self.teams:
-                team.make_asks(team_budgets[team.id], self.teams)
+                made_asks = team.make_asks(team_budgets[team.id], self.teams)
+                for ask in made_asks:
+                    self.add_to_auction(set(ask.players), [], [ask])
 
             clearing = self.clear_auctions()
